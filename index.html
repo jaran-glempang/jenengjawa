@@ -3,172 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panganggit Jeneng</title>
+    <title>Panganggit Jeneng ✦ Jawi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=IM+Fell+English:ital@0;1&family=Noto+Serif+Javanese&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Chewy&family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&family=Inter:wght@400;600;800&display=swap');
-
-        body { 
-            margin: 0; padding: 0; 
-            display: flex; justify-content: center; align-items: center; 
-            min-height: 100vh; 
-            background-color: #ffeaf5;
-            background-image: 
-                linear-gradient(45deg, #ffffff 25%, transparent 25%), 
-                linear-gradient(-45deg, #ffffff 25%, transparent 25%), 
-                linear-gradient(45deg, transparent 75%, #ffffff 75%), 
-                linear-gradient(-45deg, transparent 75%, #ffffff 75%);
-            background-size: 30px 30px;
-            background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
-            font-family: 'Fredoka', sans-serif;
+        :root {
+            --coklat-tua: #2c1a0e;
+            --coklat-mid: #5c3a1e;
+            --emas: #c8922a;
+            --emas-terang: #f0c060;
+            --krem: #f5e9c8;
+            --krem-gelap: #e8d5a0;
+            --merah-jawa: #8b1a1a;
+            --hijau-jawa: #2d4a2d;
         }
 
-        .card { 
-            background: #ffffff;
-            padding: 2.5rem 1.5rem; 
-            border-radius: 40px; 
-            border: 5px solid #ffb3d9;
-            box-shadow: 10px 10px 0px #ff85c1;
-            text-align: center; 
-            width: 450px; 
-            max-width: 90%; 
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        h2 { 
-            font-family: 'Chewy', cursive;
-            color: #ff47a6;
-            margin: 0 0 0.5rem 0; 
-            font-size: clamp(2rem, 8vw, 2.8rem);
-            text-shadow: 2px 2px 0px #fff, 4px 4px 0px #ffe0f0;
-        }
-
-        .description-en { 
-            font-family: 'Inter', sans-serif;
-            color: #ff85c1; 
-            font-size: 0.85rem; 
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-        }
-
-        #result-container {
-            /* KUNCI STABILITAS: Tinggi box hasil dikunci */
-            height: 120px;
+        body {
+            min-height: 100vh;
+            background-color: var(--coklat-tua);
+            background-image:
+                /* Batik kawung pattern */
+                radial-gradient(ellipse 12px 8px at 20px 20px, transparent 6px, rgba(200,146,42,0.08) 6px, rgba(200,146,42,0.08) 8px, transparent 8px),
+                radial-gradient(ellipse 12px 8px at 0px 0px, transparent 6px, rgba(200,146,42,0.08) 6px, rgba(200,146,42,0.08) 8px, transparent 8px),
+                radial-gradient(ellipse 8px 12px at 10px 10px, transparent 4px, rgba(200,146,42,0.05) 4px, rgba(200,146,42,0.05) 6px, transparent 6px),
+                linear-gradient(135deg, #1a0f08 0%, #2c1a0e 40%, #1f1208 100%);
+            background-size: 40px 40px, 40px 40px, 40px 40px, 100% 100%;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #fff9fc; 
-            border: 3px dashed #ffb3d9;
-            border-radius: 25px;
-            margin: 1rem 0;
-            padding: 10px;
+            padding: 2rem 1rem;
+            font-family: 'IM Fell English', serif;
+        }
+
+        /* Ornamen garis atas bawah */
+        .ornamen-atas, .ornamen-bawah {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            color: var(--emas);
+            font-size: 1.4rem;
+            letter-spacing: 0.3rem;
+            opacity: 0.7;
+            margin: 0.4rem 0;
+            user-select: none;
+        }
+
+        .kartu {
+            background: linear-gradient(160deg, #f5e9c8 0%, #ede0b0 50%, #e8d5a0 100%);
+            width: 100%;
+            max-width: 500px;
+            border: 3px solid var(--emas);
+            outline: 1px solid rgba(200,146,42,0.3);
+            outline-offset: 6px;
+            position: relative;
+            padding: 2.5rem 2rem 2rem;
+            box-shadow:
+                0 0 0 8px rgba(44,26,14,0.8),
+                0 0 0 10px var(--emas),
+                0 0 40px rgba(200,146,42,0.2),
+                inset 0 0 60px rgba(92,58,30,0.1);
+        }
+
+        /* Ornamen sudut */
+        .sudut {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            color: var(--emas);
+            font-size: 2rem;
+            line-height: 1;
+            opacity: 0.8;
+        }
+        .sudut.tl { top: 8px; left: 8px; }
+        .sudut.tr { top: 8px; right: 8px; transform: scaleX(-1); }
+        .sudut.bl { bottom: 8px; left: 8px; transform: scaleY(-1); }
+        .sudut.br { bottom: 8px; right: 8px; transform: scale(-1,-1); }
+
+        /* Motif batik dekoratif di belakang */
+        .batik-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image:
+                repeating-linear-gradient(45deg, var(--coklat-tua) 0, var(--coklat-tua) 1px, transparent 0, transparent 50%),
+                repeating-linear-gradient(-45deg, var(--coklat-tua) 0, var(--coklat-tua) 1px, transparent 0, transparent 50%);
+            background-size: 12px 12px;
+            pointer-events: none;
+            border-radius: 0;
+        }
+
+        .isi { position: relative; z-index: 1; }
+
+        /* Aksara Jawa dekoratif di atas */
+        .aksara-jawa {
+            text-align: center;
+            font-size: 1.8rem;
+            color: var(--coklat-mid);
+            opacity: 0.5;
+            letter-spacing: 0.2rem;
+            margin-bottom: 0.3rem;
+            font-family: 'Noto Serif Javanese', serif;
+        }
+
+        .garis-emas {
+            width: 80%;
+            margin: 0.6rem auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--emas), transparent);
+        }
+
+        h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            color: var(--coklat-tua);
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            text-align: center;
+            letter-spacing: 0.05rem;
+            text-shadow: 1px 1px 0 rgba(200,146,42,0.4);
+            margin-bottom: 0.2rem;
+        }
+
+        .subjudul {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--coklat-mid);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 1.2rem;
+            opacity: 0.8;
+        }
+
+        /* Kotak hasil */
+        #result-container {
+            background: linear-gradient(135deg, #1a0f08, #2c1a0e);
+            border: 2px solid var(--emas);
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            margin: 1rem 0 1.2rem;
+            position: relative;
+            box-shadow:
+                inset 0 0 30px rgba(0,0,0,0.5),
+                0 0 15px rgba(200,146,42,0.15);
+        }
+
+        /* Sudut kecil di kotak hasil */
+        #result-container::before,
+        #result-container::after {
+            content: '✦';
+            position: absolute;
+            color: var(--emas);
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        #result-container::before { top: 4px; left: 6px; }
+        #result-container::after { bottom: 4px; right: 6px; }
+
+        .label-hasil {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--emas);
+            font-size: 0.7rem;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-bottom: 0.4rem;
+        }
+
+        #result {
+            font-family: 'Cinzel Decorative', cursive;
+            color: var(--emas-terang);
+            font-size: 1.5rem;
+            text-align: center;
+            text-shadow:
+                0 0 20px rgba(240,192,96,0.4),
+                1px 1px 0 rgba(0,0,0,0.5);
+            line-height: 1.3;
+            word-break: break-word;
+            transition: font-size 0.2s, opacity 0.3s;
+        }
+
+        #result.flash {
+            animation: kilat 0.4s ease;
+        }
+
+        @keyframes kilat {
+            0% { opacity: 0; transform: scale(0.95); }
+            60% { opacity: 1; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Sandhi badge */
+        #sandhi-badge {
+            display: none;
+            margin-top: 0.5rem;
+            font-family: 'IM Fell English', serif;
+            font-style: italic;
+            font-size: 0.75rem;
+            color: var(--krem-gelap);
+            opacity: 0.7;
+        }
+
+        /* Tombol */
+        .tombol-wrapper {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        button {
+            flex: 1;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 0.75rem;
+            letter-spacing: 0.05rem;
+            cursor: pointer;
+            padding: 0.85rem 0.5rem;
+            border: 2px solid var(--emas);
+            transition: all 0.15s;
+            position: relative;
             overflow: hidden;
         }
 
-        #result { 
-            font-family: 'Quicksand', sans-serif;
-            font-weight: 700; 
-            color: #ff47a6; 
-            width: 100%;
-            /* Font awal besar, akan mengecil via JS jika kepanjangan */
-            font-size: 1.6rem;
-            line-height: 1.2;
-            word-wrap: break-word;
-            transition: font-size 0.2s ease;
+        #btn-generate {
+            background: linear-gradient(160deg, var(--coklat-mid), var(--coklat-tua));
+            color: var(--emas-terang);
+            box-shadow: 0 4px 0 #1a0a04, 0 0 15px rgba(200,146,42,0.1);
+        }
+        #btn-generate:hover {
+            background: linear-gradient(160deg, #7a4e2a, #3d2010);
+            box-shadow: 0 4px 0 #1a0a04, 0 0 25px rgba(200,146,42,0.25);
+        }
+        #btn-generate:active {
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #1a0a04;
         }
 
-        button { 
-            background: #ff47a6; 
-            color: #fff; 
-            border: 3px solid #b81d6d; 
-            padding: 1rem; 
-            border-radius: 100px;
-            cursor: pointer; 
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.1rem; 
-            font-weight: 600;
-            width: 100%; 
-            box-shadow: 0px 6px 0px #b81d6d;
-            text-transform: uppercase;
-            margin-top: 0.5rem;
-            transition: all 0.1s;
+        #btn-salin {
+            background: transparent;
+            color: var(--coklat-mid);
+            border-color: var(--coklat-mid);
+            font-size: 0.7rem;
+            flex: 0.5;
+        }
+        #btn-salin:hover { background: rgba(92,58,30,0.1); }
+        #btn-salin:active { transform: translateY(2px); }
+        #btn-salin.tersalin {
+            color: var(--hijau-jawa);
+            border-color: var(--hijau-jawa);
         }
 
-        button:active {
-            transform: translateY(4px);
-            box-shadow: none;
+        /* Riwayat */
+        .riwayat-label {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--coklat-mid);
+            font-size: 0.72rem;
+            text-align: center;
+            letter-spacing: 0.15rem;
+            margin-bottom: 0.4rem;
+            opacity: 0.7;
         }
 
-        .footer-note { 
-            margin-top: 2rem; 
-            font-size: 0.75rem; 
-            color: #ff85c1; 
-            font-weight: 700;
+        #riwayat {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+            min-height: 28px;
         }
 
-        .footer-note a { 
-            color: #ff47a6; 
+        .riwayat-item {
+            font-family: 'IM Fell English', serif;
+            font-size: 0.72rem;
+            color: var(--coklat-mid);
+            background: rgba(92,58,30,0.12);
+            border: 1px solid rgba(92,58,30,0.3);
+            padding: 2px 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+            opacity: 0.8;
+        }
+        .riwayat-item:hover {
+            background: rgba(92,58,30,0.25);
+            opacity: 1;
+        }
+
+        .garis-footer {
+            width: 60%;
+            margin: 1rem auto 0.6rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--coklat-mid), transparent);
+            opacity: 0.4;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.72rem;
+            color: var(--coklat-mid);
+            opacity: 0.6;
+        }
+        .footer-note a {
+            color: var(--emas);
             text-decoration: none;
-            background: #fff0f7;
-            padding: 2px 6px;
-            border-radius: 8px;
-            border: 1px solid #ffb3d9;
+            opacity: 0.8;
+        }
+        .footer-note a:hover { opacity: 1; }
+
+        /* Keyboard shortcut hint */
+        .shortcut-hint {
+            text-align: center;
+            font-size: 0.65rem;
+            color: var(--coklat-mid);
+            opacity: 0.45;
+            font-style: italic;
+            margin-top: 0.3rem;
+            font-family: 'IM Fell English', serif;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Panganggit Jeneng</h2>
-    <div class="description-en">Generate Javanese family names. Sugeng njajal!</div>
-    
-    <div id="result-container">
-        <div id="result">---</div>
+<div class="ornamen-atas">✦ — ✦ — ✦ — ✦</div>
+
+<div class="kartu">
+    <div class="batik-bg"></div>
+
+    <!-- Sudut ornamen -->
+    <div class="sudut tl">❧</div>
+    <div class="sudut tr">❧</div>
+    <div class="sudut bl">❧</div>
+    <div class="sudut br">❧</div>
+
+    <div class="isi">
+        <div class="aksara-jawa">ꦥꦔꦁꦒꦶꦠ꧀ꦗꦼꦤꦼꦁ</div>
+
+        <div class="garis-emas"></div>
+
+        <h2>Panganggit Jeneng</h2>
+        <div class="subjudul">Generate Javanese family names</div>
+
+        <div class="garis-emas"></div>
+
+        <div id="result-container">
+            <div class="label-hasil">✦ Asmanipun ✦</div>
+            <div id="result">— — —</div>
+            <div id="sandhi-badge"></div>
+        </div>
+
+        <div class="tombol-wrapper">
+            <button id="btn-generate" onclick="generateName()">✦ Damel Asma ✦</button>
+            <button id="btn-salin" onclick="salinNama()">Salin</button>
+        </div>
+
+        <div class="riwayat-label">✦ Cathetaning Asma ✦</div>
+        <div id="riwayat"></div>
+
+        <div class="garis-footer"></div>
+        <div class="footer-note">Damel dening <a href="https://x.com/NetflixJW" target="_blank">@NetflixJW</a></div>
+
     </div>
-    
-    <button onclick="generateName()">Generate Name</button>
-    
-    <div class="footer-note">Made by <a href="https://x.com/NetflixJW" target="_blank">@NetflixJW</a></div>
 </div>
 
+<div class="ornamen-bawah">✦ — ✦ — ✦ — ✦</div>
+
 <script>
+    const namaDepan = ["mangun","mangku","wojo","ambar","setyo","padmo","wedyo","wignyo","pujo","puji","puspo","sastro","pringgo","citro","sekar","ranu","danu","aryo","arum","tirto","suryo","santa","karto","wigyo","suro","ronggo","sasro","purwo","cokro","lembu","paku","bayu","noto","wrekso","sindu","yoso","sudiro","prayu","cipto","hadi","haryo","pramu","pamong","sani","narto","broto","marto","jati","midera","dirgo","jiwa","joyo","tejo","pandu","atmo","wiro","dipo","purbo","kresno","merto","cahyo","wongso","yomo","panoto","rekso","gondo","darko","hando","bodro","arung","prawoto","projo","darmo","budi"];
+
+    const namaBelakang = ["atmojo","kusumo","sentiko","sumantri","saroso","husodo","aji","nirmolo","wiyatno","wiguno","kinanthi","asmoro","dikromo","wiloso","nugroho","wiyarti","ningrum","ningtyas","mentaram","dipuro","pasuti","tenoyo","prati","dati","darsono","anggoro","utomo","utami","wiratmo","wirono","sadewo","negaran","tyaso","pradoto","pawitro","pasuwiryo","musthiko","suyatno","sangkoyo","sarsadi","puspito","sugondo","suwanto","dirjo","darmo","suroto","yudo","pratomo","wening","lesmi","binang","wijoyo","darmojo","waluyo","suwiryo","gayatri","retno","winoto","sumantro","pranoto","amiseno","laksito","sumarto","wigati","priansari","wijatmoko","lastri","wanto","martono","dono","wardono","somo","widagdo","waskito","warsito","mudyo","winangun","alam","digdo","waseso","wiryo","setro","wardoyo","dilogo","kuncoro","karyo","projo","wibowo","hadi","siswo","amijoyo","direjo","yuwono","loyo","suwandito","siwojo","padmoyo","hantoro","darmanto","mono","yumono","nolo","dibyo","sudibyo","harjo","purwoko","sudarto","miharjo","winarso","wihastuti","diwijo","wilojo","santi","seto","seno","kartiyoso","prawoto","sayekti","legowo","guritno","handoyo"];
+
+    let riwayat = [];
+    let namaTerakhir = '';
+
     function capitalize(str) {
         return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
     }
 
     function generateName() {
-        const namaDepan = ["mangun", "mangku", "wojo", "ambar", "setyo", "padmo", "wedyo", "wignyo", "pujo", "puji", "puspo", "sastro", "pringgo", "citro", "sekar", "ranu", "danu", "aryo", "arum", "tirto", "suryo", "santa", "karto", "wigyo", "suro", "ronggo", "sasro", "purwo", "cokro", "lembu", "paku", "bayu", "noto", "wrekso", "sindu", "yoso", "sudiro", "prayu", "cipto", "hadi", "haryo", "pramu", "pamong", "sani", "narto", "broto", "marto", "jati", "midera", "dirgo", "jiwa", "joyo", "tejo", "pandu", "atmo", "wiro", "dipo", "purbo", "kresno", "merto", "cahyo", "wongso", "yomo", "panoto", "rekso", "gondo", "darko", "hando", "bodro", "arung", "prawoto", "projo", "darmo", "budi"];
-        const namaBelakang = ["atmojo", "kusumo", "sentiko", "sumantri", "saroso", "husodo", "aji", "nirmolo", "wiyatno", "wiguno", "kinanthi", "asmoro", "dikromo", "wiloso", "nugroho", "wiyarti", "ningrum", "ningtyas", "mentaram", "dipuro", "pasuti", "tenoyo", "prati", "dati", "darsono", "anggoro", "utomo", "utami", "wiratmo", "wirono", "sadewo", "negaran", "tyaso", "pradoto", "pawitro", "pasuwiryo", "musthiko", "suyatno", "sangkoyo", "sarsadi", "puspito", "sugondo", "suwanto", "dirjo", "darmo", "suroto", "yudo", "pratomo", "wening", "lesmi", "binang", "wijoyo", "darmojo", "waluyo", "suwiryo", "gayatri", "retno", "winoto", "sumantro", "pranoto", "amiseno", "laksito", "sumarto", "wigati", "priansari", "wijatmoko", "lastri", "wanto", "martono", "dono", "wardono", "somo", "widagdo", "waskito", "warsito", "mudyo", "winangun", "alam", "digdo", "waseso", "wiryo", "setro", "wardoyo", "dilogo", "kuncoro", "karyo", "projo", "wibowo", "hadi", "siswo", "amijoyo", "direjo", "yuwono", "loyo", "widuro", "suwandito", "siwojo", "padmoyo", "hantoro", "darmanto", "mono", "yumono", "nolo", "dibyo", "sudibyo", "harjo", "purwoko", "sudarto", "miharjo", "winarso", "wihastuti", "diwijo", "wilojo", "santi", "seto", "seno", "kartiyoso", "prawoto", "sayekti", "legowo", "guritno", "handoyo"];
-
         let d = namaDepan[Math.floor(Math.random() * namaDepan.length)];
         let b = namaBelakang[Math.floor(Math.random() * namaBelakang.length)];
 
         let namaAsli = capitalize(d + b);
         let finalDisplay = namaAsli;
+        let sandhi = '';
 
         let dLast = d.charAt(d.length - 1);
         let bFirst = b.charAt(0);
 
-        if ((dLast === 'o' && bFirst === 'a') || 
-            (dLast === 'a' && bFirst === 'a') || 
-            (dLast === 'a' && bFirst === 'i')) {
-            
+        if ((dLast === 'o' && bFirst === 'a') ||
+            (dLast === 'a' && bFirst === 'a') ||
+            (dLast === 'a' && bFirst === 'i') ||
+            (dLast === 'o' && bFirst === 'u') ||
+            (dLast === 'i' && bFirst === 'a')) {
             let namaSandhi = capitalize(d.slice(0, -1) + b);
-            finalDisplay = namaAsli + " / " + namaSandhi;
+            finalDisplay = namaAsli;
+            sandhi = 'ugi saged: ' + namaSandhi;
         }
 
-        const resultDiv = document.getElementById("result");
-        resultDiv.innerText = finalDisplay;
+        namaTerakhir = finalDisplay;
 
-        // ADJUST FONT SIZE BASED ON LENGTH
-        if (finalDisplay.length > 25) {
-            resultDiv.style.fontSize = "1.1rem";
-        } else if (finalDisplay.length > 15) {
-            resultDiv.style.fontSize = "1.3rem";
+        const resultDiv = document.getElementById('result');
+        const sandhiBadge = document.getElementById('sandhi-badge');
+
+        resultDiv.classList.remove('flash');
+        void resultDiv.offsetWidth;
+        resultDiv.classList.add('flash');
+
+        resultDiv.innerText = finalDisplay;
+        if (sandhi) {
+            sandhiBadge.style.display = 'block';
+            sandhiBadge.innerText = sandhi;
         } else {
-            resultDiv.style.fontSize = "1.6rem";
+            sandhiBadge.style.display = 'none';
+        }
+
+        // Font size
+        if (finalDisplay.length > 22) {
+            resultDiv.style.fontSize = '1rem';
+        } else if (finalDisplay.length > 15) {
+            resultDiv.style.fontSize = '1.2rem';
+        } else {
+            resultDiv.style.fontSize = '1.5rem';
+        }
+
+        // Simpan riwayat
+        if (!riwayat.includes(finalDisplay)) {
+            riwayat.unshift(finalDisplay);
+            if (riwayat.length > 4) riwayat.pop();
+            renderRiwayat();
         }
     }
+
+    function renderRiwayat() {
+        const el = document.getElementById('riwayat');
+        el.innerHTML = riwayat.map(n =>
+            `<span class="riwayat-item" onclick="pakaiNama('${n}')">${n}</span>`
+        ).join('');
+    }
+
+    function pakaiNama(nama) {
+        namaTerakhir = nama;
+        const resultDiv = document.getElementById('result');
+        resultDiv.classList.remove('flash');
+        void resultDiv.offsetWidth;
+        resultDiv.classList.add('flash');
+        resultDiv.innerText = nama;
+        document.getElementById('sandhi-badge').style.display = 'none';
+
+        if (nama.length > 22) resultDiv.style.fontSize = '1rem';
+        else if (nama.length > 15) resultDiv.style.fontSize = '1.2rem';
+        else resultDiv.style.fontSize = '1.5rem';
+    }
+
+    function salinNama() {
+        if (!namaTerakhir || namaTerakhir === '— — —') return;
+        navigator.clipboard.writeText(namaTerakhir).then(() => {
+            const btn = document.getElementById('btn-salin');
+            btn.innerText = '✓ Kasalin';
+            btn.classList.add('tersalin');
+            setTimeout(() => {
+                btn.innerText = 'Salin';
+                btn.classList.remove('tersalin');
+            }, 1500);
+        });
+    }
+
+    // Shortcut spasi
+    document.addEventListener('keydown', e => {
+        if (e.code === 'Space' && e.target.tagName !== 'INPUT') {
+            e.preventDefault();
+            generateName();
+        }
+    });
 </script>
 
 </body>
