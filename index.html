@@ -372,20 +372,14 @@
     }
 
     function fitFontSize(el) {
-        el.style.whiteSpace = 'nowrap';
-        el.style.fontSize = '1.5rem';
+        // Izinkan wrap ke 2 baris — font tidak akan terlalu kecil di mobile
+        el.style.whiteSpace = 'normal';
+        el.style.wordBreak = 'break-word';
 
-        const container = el.parentElement;
-        // Hitung maxWidth dari lebar container yang sebenarnya (responsif)
-        const containerStyle = window.getComputedStyle(container);
-        const paddingH = parseFloat(containerStyle.paddingLeft) + parseFloat(containerStyle.paddingRight);
-        const maxWidth = container.clientWidth - paddingH - 8;
-
-        const sizes = ['1.5rem', '1.25rem', '1.05rem', '0.9rem', '0.78rem', '0.68rem'];
-        for (const size of sizes) {
-            el.style.fontSize = size;
-            if (el.scrollWidth <= maxWidth) break;
-        }
+        const len = el.innerText.length;
+        if (len <= 15)      el.style.fontSize = '1.5rem';
+        else if (len <= 20) el.style.fontSize = '1.25rem';
+        else                el.style.fontSize = '1.05rem';
     }
 
     function generateName() {
